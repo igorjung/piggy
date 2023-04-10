@@ -3,7 +3,7 @@ import Head from 'next/head'
 import styled from 'styled-components'
 import { DeleteForeverRounded } from '@material-ui/icons'
 
-import { Button, Input, Select } from '@components'
+import { Button, Input, Select, Switch } from '@components'
 
 const Wrapper = styled.main`
   display: flex;
@@ -109,6 +109,23 @@ const Home: NextPage = () => {
               }, {
                 id: 2,
                 label: 'Outcome'
+              }]}
+            />
+          </Column>
+        </Line>
+        <Title>Switchs:</Title>
+        <Line>
+          <Column>
+            <Switch 
+              options={[{
+                id: 1,
+                label: 'Sign in',
+                onClick: () => {console.log('sign in switch button clicked')},
+                isActivated: true,
+              }, {
+                id: 2,
+                label: 'Sign up',
+                onClick: () => {console.log('sign up switch button clicked')},
               }]}
             />
           </Column>
