@@ -11,9 +11,13 @@ export default createGlobalStyle`
     height: 100%;
     font: 400 15px Roboto, sans-serif;
   }
-  button {
+  button, input {
     border: 0;
     background: none;
+    
+    &:focus {
+      outline: none;
+    }
   }
   ul,li {
     list-style-type: none;

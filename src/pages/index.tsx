@@ -3,7 +3,7 @@ import Head from 'next/head'
 import styled from 'styled-components'
 import { DeleteForeverRounded } from '@material-ui/icons'
 
-import { Button, Input } from '@components'
+import { Button, Input, Select } from '@components'
 
 const Wrapper = styled.main`
   display: flex;
@@ -77,7 +77,40 @@ const Home: NextPage = () => {
         <Title>Inputs:</Title>
         <Line>
           <Column>
-            <Input />
+            <Input 
+              type="text" 
+              placeholder='Name'
+            />
+          </Column>
+          <Column>
+            <Input 
+              type="text" 
+              icon={DeleteForeverRounded}
+              onIconClick={(event) => console.log('input icon click event: ', event)}
+              placeholder='Password'
+            />
+          </Column>
+          <Column>
+            <Input 
+              disabled
+              type="text" 
+              placeholder='Name'
+            />
+          </Column>
+        </Line>
+        <Title>Selects:</Title>
+        <Line>
+          <Column>
+            <Select 
+              placeholder='Type' 
+              options={[{
+                id: 1,
+                label: 'Income'
+              }, {
+                id: 2,
+                label: 'Outcome'
+              }]}
+            />
           </Column>
         </Line>
       </Wrapper>

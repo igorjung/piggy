@@ -1,34 +1,36 @@
 import styled from 'styled-components'
 
 export const FormInputWrapper = styled.div`
-  height: 45px;
+  height: 40px;
   width: 310px;
 
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
 
   border-radius: 10px;
-  color: ${({ theme }) => theme.white};
-  cursor: pointer;
+  border: 2px solid ${({ theme }) => theme.black};
 
-  svg {
-    height: 16px;
-    width: 16px;
-    margin-right: 8px;
+  input {
+    width: 100%;
+    height: 100%;
+
+    padding: 5px 10px;
+    font-size: 14px;
   }
 
-  &.primary {
-    background-color: ${({ theme }) => theme.darkBlue};
-  }
+  button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-  &.secondary {
-    background-color: ${({ theme }) => theme.pink};
-  }
+    padding-right: 10px;
+    cursor: pointer;
 
-  &.tertiary {
-    background-color: none;
-    color: ${({ theme }) => theme.black};
+    svg {
+      height: 18px;
+      width: 18px;
+    }
   }
 
   &:disabled {

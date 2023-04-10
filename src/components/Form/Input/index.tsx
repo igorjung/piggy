@@ -6,17 +6,22 @@ import { FormInputWrapper } from './styles'
 
 interface InputProps extends InputHTMLAttributes<any> {
   icon?: OverridableComponent<any>
+  onIconClick?: React.MouseEventHandler<HTMLButtonElement>
 }
 
 const Input = ({
   icon,
-  className = 'primary',
+  onIconClick,
   ...rest
 }: InputProps) => {
   return (
-    <FormInputWrapper className={className}>
-      {icon && <SvgIcon component={icon}/>}
+    <FormInputWrapper>
       <input type="text" {...rest}/>
+      {icon && (
+        <button type="button" onClick={onIconClick}>
+          <SvgIcon component={icon}/>
+        </button>
+      )}
     </FormInputWrapper>
   )
 }

@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 export const FormButton = styled.button`
-  height: 45px;
+  height: 40px;
   width: 310px;
 
   display: flex;
