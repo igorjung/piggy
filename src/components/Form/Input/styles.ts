@@ -10,6 +10,7 @@ export const FormInputWrapper = styled.div`
 
   border-radius: 10px;
   border: 2px solid ${({ theme }) => theme.black};
+  background-color: ${({ theme }) => theme.white};
 
   input {
     width: 100%;

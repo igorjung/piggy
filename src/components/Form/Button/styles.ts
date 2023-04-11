@@ -2,7 +2,8 @@ import styled from 'styled-components'
 
 export const FormButton = styled.button`
   height: 40px;
-  width: 310px;
+  width: 100%;
+  max-width: 300px;
 
   display: flex;
   align-items: center;
@@ -11,6 +12,8 @@ export const FormButton = styled.button`
   border-radius: 10px;
   color: ${({ theme }) => theme.white};
   cursor: pointer;
+
+  padding: 5px 32px;
 
   svg {
     font-size: 16px;

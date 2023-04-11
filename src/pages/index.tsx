@@ -1,9 +1,18 @@
+import { useState } from 'react';
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import styled from 'styled-components'
 import { DeleteForeverRounded } from '@material-ui/icons'
 
-import { Button, Input, Select, Switch, Sidebar } from '@components'
+import { 
+  Button, 
+  Input, 
+  Select, 
+  Switch, 
+  Sidebar,
+  Alert, 
+  Modal,
+} from '@components'
 
 const Wrapper = styled.main`
   display: flex;
@@ -43,6 +52,9 @@ const Column = styled.li`
 `
 
 const Home: NextPage = () => {
+  const [ isAlertVisible, setIsAlertVisible ] = useState(false);
+  const [ isModalVisible, setIsModalVisible ] = useState(false);
+
   return (
     <>
       <Head>
@@ -51,6 +63,36 @@ const Home: NextPage = () => {
       </Head>
       <Wrapper>
         <Sidebar/>
+        <Alert 
+          description="Are you sure that you want to delete this item?"
+          actions={[{
+            id: 0,
+            label: 'CANCEL',
+            class: 'primary',
+            onClick: () => {
+              console.log('cancel button clicked')
+              setIsAlertVisible(false)
+            }
+          }, {
+            id: 1,
+            label: 'DELETE',
+            class: 'secondary',
+            onClick: () => {
+              console.log('delete button clicked')
+              setIsAlertVisible(false)
+            }
+          }]}
+          onClose={() => setIsAlertVisible(false)}
+          isOpen={isAlertVisible}
+        />
+        <Modal 
+          title="Test Modal"
+          onClose={() => setIsModalVisible(false)}
+          isOpen={isModalVisible}
+        >
+          <li><Input /></li>
+          <li><Input /></li>
+        </Modal>
         <Title>Buttons:</Title>
         <Line>
           <Column>
@@ -129,6 +171,23 @@ const Home: NextPage = () => {
                 label: 'Sign up',
                 onClick: () => {console.log('sign up switch button clicked')},
               }]}
+            />
+          </Column>
+        </Line>
+        <Title>Alert and Modals:</Title>
+        <Line>
+          <Column>
+            <Button 
+              className='primary'
+              label="OPEN ALERT" 
+              onClick={() => setIsAlertVisible(true)} 
+            />
+          </Column>
+          <Column>
+            <Button 
+              className='primary'
+              label="OPEN MODAL" 
+              onClick={() => setIsModalVisible(true)} 
             />
           </Column>
         </Line>
