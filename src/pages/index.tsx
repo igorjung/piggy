@@ -12,7 +12,9 @@ import {
   Sidebar,
   Alert, 
   Modal,
+  Table,
 } from '@components'
+import { BalanceTableModel } from '@/interfaces';
 
 const Wrapper = styled.main`
   display: flex;
@@ -52,8 +54,65 @@ const Column = styled.li`
 `
 
 const Home: NextPage = () => {
-  const [ isAlertVisible, setIsAlertVisible ] = useState(false);
-  const [ isModalVisible, setIsModalVisible ] = useState(false);
+  const [isAlertVisible, setIsAlertVisible] = useState(false);
+  const [isModalVisible, setIsModalVisible] = useState(false);
+
+  const data: BalanceTableModel = {
+    year: '2023',
+    months: [{
+      date: '01/01/2023',
+      entriesId: [0, 1, 2],
+    }, {
+      date: '02/02/2023',
+      entriesId: [0, 1, 2],
+    }, {
+      date: '03/03/2023',
+      entriesId: [0, 1, 2],
+    }, {
+      date: '01/04/2023',
+      entriesId: [0, 1, 2],
+    }, {
+      date: '05/05/2023',
+      entriesId: [0, 1, 2],
+    }, {
+      date: '06/06/2023',
+      entriesId: [0, 1, 2],
+    }, {
+      date: '07/07/2023',
+      entriesId: [0, 1, 2],
+    }, {
+      date: '08/08/2023',
+      entriesId: [0, 1, 2],
+    }, {
+      date: '09/09/2023',
+      entriesId: [0, 1, 2],
+    }, {
+      date: '10/10/2023',
+      entriesId: [0, 1, 2],
+    }, {
+      date: '11/11/2023',
+      entriesId: [0, 1, 2],
+    }, {
+      date: '12/12/2023',
+      entriesId: [0, 1, 2],
+    }],
+    entries: [{
+      id: 0,
+      name: 'Skincare',
+      value: 200,
+      type: 0
+    }, {
+      id: 1,
+      name: 'Salary',
+      value: 4800,
+      type: 1
+    }, {
+      id: 2,
+      name: 'Outfits',
+      value: 500,
+      type: 0
+    }]
+  }
 
   return (
     <>
@@ -191,6 +250,8 @@ const Home: NextPage = () => {
             />
           </Column>
         </Line>
+        <Title>Table: </Title>
+        <Table data={data}/>
       </Wrapper>
     </>
   )
