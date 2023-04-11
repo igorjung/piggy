@@ -28,8 +28,7 @@ export const FormInputWrapper = styled.div`
     cursor: pointer;
 
     svg {
-      height: 18px;
-      width: 18px;
+      font-size: 18px;
     }
   }
 

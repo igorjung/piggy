@@ -13,9 +13,8 @@ export const FormButton = styled.button`
   cursor: pointer;
 
   svg {
-    height: 16px;
-    width: 16px;
-    margin-right: 8px;
+    font-size: 16px;
+    margin-right: 4px;
   }
 
   &.primary {

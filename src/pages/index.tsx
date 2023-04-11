@@ -3,13 +3,14 @@ import Head from 'next/head'
 import styled from 'styled-components'
 import { DeleteForeverRounded } from '@material-ui/icons'
 
-import { Button, Input, Select, Switch } from '@components'
+import { Button, Input, Select, Switch, Sidebar } from '@components'
 
 const Wrapper = styled.main`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
+  background-color: ${( { theme }) => theme.lightGray};
 
   width: 100%;
   height: 100%;
@@ -49,6 +50,7 @@ const Home: NextPage = () => {
         <meta name="description" content="piggy" />
       </Head>
       <Wrapper>
+        <Sidebar/>
         <Title>Buttons:</Title>
         <Line>
           <Column>
