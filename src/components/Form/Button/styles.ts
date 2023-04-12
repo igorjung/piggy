@@ -17,7 +17,7 @@ export const FormButton = styled.button<{ iconColor?: string }>`
 
   svg {
     font-size: 16px;
-    margin-right: 4px;
+    margin-right: 8px;
     color: ${({ theme, iconColor }) => iconColor ?? theme.black};
   }
 
@@ -35,8 +35,7 @@ export const FormButton = styled.button<{ iconColor?: string }>`
   }
 
   &:disabled {
-    background-color: ${({ theme }) => theme.darkGray};
-    color: ${({ theme }) => theme.lightGray};
+    opacity: 0.4;
     cursor: not-allowed;
   }
 `

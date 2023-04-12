@@ -5,7 +5,7 @@ export const FormSelect = styled.select`
   width: 310px;
 
   border-radius: 10px;
-  border: 2px solid ${({ theme }) => theme.black};
+  border: 2px solid ${({ theme }) => theme.lightGray};
   background-color: ${({ theme }) => theme.white};
 
   padding: 5px 10px;
