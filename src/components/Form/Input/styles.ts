@@ -9,7 +9,7 @@ export const FormInputWrapper = styled.div`
   justify-content: flex-start;
 
   border-radius: 10px;
-  border: 2px solid ${({ theme }) => theme.black};
+  border: 2px solid ${({ theme }) => theme.lightGray};
   background-color: ${({ theme }) => theme.white};
 
   input {

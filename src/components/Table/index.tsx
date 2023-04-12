@@ -76,7 +76,7 @@ const Table = ({ data }: TableProps) => {
               id: 0,
               label: 'Income'
             }, {
-              id: 0,
+              id: 1,
               label: 'Outcome'
             }]}
           />

@@ -28,20 +28,14 @@ const Sidebar = () => {
     id: 0,
     label: 'Dashboard',
     icon: Dashboard,
-    onClick: () => router.push('/dasboard'),
-    isSelected: !!router.asPath.includes('/'),
+    onClick: () => router.push('/home'),
+    isSelected: !!router.asPath.includes('/home'),
   }, {
     id: 1,
-    label: 'Incomes',
+    label: 'New Entry',
     icon: AttachMoney,
-    onClick: () => router.push('/incomes'),
-    isSelected: !!router.asPath.includes('/incomes'),
-  }, {
-    id: 2,
-    label: 'Outcomes',
-    icon: CreditCard,
-    onClick: () => router.push('/outcomes'),
-    isSelected: !!router.asPath.includes('/outcomes'),
+    onClick: () => router.push('/entry'),
+    isSelected: !!router.asPath.includes('/entry'),
   }]
 
   const onSidebarStatusChange = () => {
