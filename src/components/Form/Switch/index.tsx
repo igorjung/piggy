@@ -12,7 +12,7 @@ interface SwitchProps {
 const Switch = ({ options }: SwitchProps) => {
   return (
     <FormSwitchWrapper>
-      {options.map((option) => (
+      {options.map(option => (
         <FormSwitchButton 
           key={option.id}
           type="button" 

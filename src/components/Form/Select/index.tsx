@@ -12,7 +12,7 @@ interface SelectProps extends SelectHTMLAttributes<any> {
 const Select = ({ options, ...rest }: SelectProps) => {
   return (
     <FormSelect {...rest}>
-      {options.map((option) => (
+      {options.map(option => (
         <option key={option.id}>{option.label}</option>
       ))}
     </FormSelect>

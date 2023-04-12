@@ -66,7 +66,7 @@ const Sidebar = () => {
         <h1>Piggy</h1>
       </SidebarHeader>
       <SidebarNav>
-        {navItems.map((navItem) => (
+        {navItems.map(navItem => (
           <SidebarItem 
             key={navItem.id} 
             isSelected={navItem.isSelected}

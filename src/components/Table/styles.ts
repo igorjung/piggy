@@ -50,7 +50,7 @@ export const TableHeaderColumn = styled.li`
 `
 export const TableLine = styled.ul`
   width: 100%;
-  height: 32px;
+  height: 36px;
 
   display: grid;
   grid-template-columns: 2fr repeat(12, 1fr);
@@ -85,5 +85,19 @@ export const TableColumn = styled.li<{ type?: number }>`
       background-color: none;
       cursor: pointer;
     }
+  }
+`
+export const TableControl = styled.footer`
+  width: 100%;
+  height: 60px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-top: 1px solid ${({ theme }) => theme.lightGray};
+
+  button {
+    width: auto;
   }
 `

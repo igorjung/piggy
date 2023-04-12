@@ -6,11 +6,13 @@ import { FormButton } from './styles'
 
 interface ButtonProps extends ButtonHTMLAttributes<any> {
   icon?: OverridableComponent<any>
+  iconColor?: string
   label: string
 }
 
 const Button = ({
   icon,
+  iconColor = '#000',
   label,
   className = 'primary',
   ...rest
@@ -19,6 +21,7 @@ const Button = ({
     <FormButton 
       type="button"
       className={className} 
+      iconColor={iconColor}
       {...rest}
     >
       {icon && <SvgIcon component={icon}/>}

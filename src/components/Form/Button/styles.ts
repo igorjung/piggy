@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export const FormButton = styled.button`
+export const FormButton = styled.button<{ iconColor?: string }>`
   height: 40px;
   width: 100%;
   max-width: 300px;
@@ -18,6 +18,7 @@ export const FormButton = styled.button`
   svg {
     font-size: 16px;
     margin-right: 4px;
+    color: ${({ theme, iconColor }) => iconColor ?? theme.black};
   }
 
   &.primary {

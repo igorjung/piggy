@@ -35,7 +35,7 @@ const Alert = ({
           <strong>{description}</strong>
         </AlertBody>
         <AlertControl itemsNumber={actions.length}>
-          {actions.map((action) => (
+          {actions.map(action => (
             <li key={action.id}>
               <Button 
                 type="button" 
