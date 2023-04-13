@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 export const FormInputWrapper = styled.div`
   height: 40px;
-  width: 310px;
+  width: 300px;
 
   display: flex;
   align-items: center;
@@ -37,5 +37,9 @@ export const FormInputWrapper = styled.div`
     background-color: ${({ theme }) => theme.darkGray};
     color: ${({ theme }) => theme.lightGray};
     cursor: not-allowed;
+  }
+
+  @media screen and (max-width: 350px) {
+    width: 100%;
   }
 `

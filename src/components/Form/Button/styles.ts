@@ -38,4 +38,8 @@ export const FormButton = styled.button<{ iconColor?: string }>`
     opacity: 0.4;
     cursor: not-allowed;
   }
+
+  @media screen and (max-width: 350px) {
+    width: 100%;
+  }
 `

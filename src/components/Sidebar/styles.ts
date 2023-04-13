@@ -6,8 +6,7 @@ export const SidebarController = styled.button<{ isOpen: boolean }>`
 
   position: fixed;
   top: 40px;
-  left: ${({ isOpen }) => isOpen ? '280px' : '0'};
-  z-index: 1;
+  z-index: 3;
 
   display: flex;
   align-items: center;
@@ -20,6 +19,18 @@ export const SidebarController = styled.button<{ isOpen: boolean }>`
   svg {
     font-size: 18px;
   }
+
+  @media screen and (min-width: 760px) {
+    left: ${({ isOpen }) => isOpen ? '280px' : '0'};
+  }
+
+  @media screen and (max-width: 760px) {
+    ${({ isOpen }) => isOpen ? 'right: 32px' : 'left: 0'};
+  }
+
+  @media screen and (max-width: 500px) {
+    ${({ isOpen }) => isOpen ? 'right: 0px' : 'left: 0'};
+  }
 `
 export const SidebarWrapper = styled.div<{ isOpen: boolean }>`
   height: 100vh;
@@ -28,6 +39,7 @@ export const SidebarWrapper = styled.div<{ isOpen: boolean }>`
   position: fixed;
   top: 0;
   left: 0;
+  z-index: 2;
 
   display: ${({  isOpen }) => isOpen ? 'flex' : 'none'};
   flex-direction: column;
@@ -36,6 +48,10 @@ export const SidebarWrapper = styled.div<{ isOpen: boolean }>`
 
   background-color: ${({ theme }) => theme.white};
   padding: 40px 32px 64px 64px;
+
+  @media screen and (max-width: 760px) {
+    width: 100%;
+  }
 `
 export const SidebarHeader = styled.header`
   width: 100%;
