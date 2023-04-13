@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 import { SvgIcon } from '@material-ui/core'
 import { 
@@ -6,7 +6,6 @@ import {
   ArrowBackIos,
   ArrowForwardIos,
   AttachMoney,
-  CreditCard,
   Dashboard,
   ExitToApp,
 } from '@material-ui/icons'
@@ -45,6 +44,13 @@ const Sidebar = () => {
   const onLogout = () => {
     router.push('/');
   }
+
+  useEffect(() => {
+    if (
+      typeof window  !== undefined 
+      && window.innerWidth < 765
+    ) setIsOpen(false)
+  }, [router])
 
   return <>
     <SidebarController 

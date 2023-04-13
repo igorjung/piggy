@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 export const FormSwitchWrapper = styled.div`
   height: 50px;
-  width: 310px;
+  width: 300px;
 
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -11,6 +11,10 @@ export const FormSwitchWrapper = styled.div`
 
   background-color: ${({ theme }) => theme.pink};
   border-radius: 10px;
+
+  @media screen and (max-width: 350px) {
+    width: 100%;
+  }
 `
 
 export const FormSwitchButton = styled.button<{ isActivated: boolean }>`
