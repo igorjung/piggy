@@ -50,6 +50,13 @@ export default createGlobalStyle`
       font: 600 14px Roboto, sans-serif;
     }
   }
+  span {
+    font: 600 12px Roboto, sans-serif;
+
+    @media screen and (max-width: 760px) {
+      font: 600 10px Roboto, sans-serif;
+    }
+  }
   small {
     font: 100 12px Roboto, sans-serif;
 

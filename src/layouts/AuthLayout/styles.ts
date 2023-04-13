@@ -45,7 +45,7 @@ export const LayoutHeader = styled.header`
     margin-right: 16px;
   }
 `
-export const LayoutBody = styled.body`
+export const LayoutBody = styled.section`
   width: 100%;
 
   display: flex;

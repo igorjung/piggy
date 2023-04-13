@@ -1,16 +1,19 @@
 import styled from 'styled-components'
 
-export const FormInputWrapper = styled.div`
+export const FormInputWrapper = styled.div<{ isInvalid?: boolean }>`
   height: 40px;
   width: 310px;
+
+  position: relative;
 
   display: flex;
   align-items: center;
   justify-content: flex-start;
 
   border-radius: 10px;
-  border: 2px solid ${({ theme }) => theme.lightGray};
+  border: 2px solid ${({ isInvalid, theme }) => isInvalid ? theme.red : theme.lightGray};
   background-color: ${({ theme }) => theme.white};
+  margin-bottom: 16px;
 
   input {
     width: 100%;
@@ -38,4 +41,12 @@ export const FormInputWrapper = styled.div`
     color: ${({ theme }) => theme.lightGray};
     cursor: not-allowed;
   }
+`
+
+export const FormInputSpan = styled.span`
+  position: absolute;
+  top: 40px;
+  left: 8px;
+
+  color: ${({ theme }) => theme.red};
 `

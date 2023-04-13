@@ -1,7 +1,8 @@
 import type { NextPage } from 'next'
 import { useRouter } from 'next/router'
+import * as yup from "yup"
+import { Form, Formik } from 'formik';
 import styled from 'styled-components'
-import { VisibilityOff } from '@material-ui/icons'
 
 import { 
   Button, 
@@ -9,7 +10,7 @@ import {
   Switch 
 } from '@components'
 
-const FormWrapper = styled.form`
+const FormWrapper = styled(Form)`
   width: 100%;
   height: 100%;
 
@@ -30,62 +31,127 @@ const FormBody = styled.ul`
   display: grid;
   justify-content: center;
   grid-template-columns: auto;
-  gap: 16px;
+  gap: 8px;
 
   margin-top: 32px;
 `
 
+const validationSchema = yup.object({
+  firstName: yup.string()
+    .typeError('Invalid value')
+    .required('Field required'),
+  lastName: yup.string()
+    .typeError('Invalid value')
+    .required('Field required'),
+  email: yup.string()
+    .email()
+    .typeError('Invalid value')
+    .required('Field required'),
+  password: yup.string()
+    .min(8, 'Password must have 8 at least character')
+    .typeError('Invalid value')
+    .required('Field required'),
+  confirmPassword: yup.string()
+    .typeError('Invalid value')
+    .oneOf([yup.ref('password'), ''], 'Password values must match')
+    .required('Field required')
+})
+
 const Signup: NextPage = () => {
   const router = useRouter()
 
+  const onSubmit = (data: any) => console.log('$$$$', data)
+
   return (
-    <FormWrapper>
-      <h1>Welcome! Create your account</h1>
-      <Switch 
-        options={[{
-          id: 1,
-          label: 'Sign in',
-          onClick: () => router.push('/login'),
-        }, {
-          id: 2,
-          label: 'Sign up',
-          onClick: () => router.push('/signup'),
-          isActivated: true,
-        }]}
-      />
-      <FormBody>
-        <li>
-          <Input name='name' placeholder='Name' />
-        </li>
-        <li>
-          <Input name='lastName' placeholder='Last Name' />
-        </li>
-        <li>
-          <Input name='email' placeholder='Email' />
-        </li>
-        <li>
-          <Input 
-            name='password' 
-            placeholder='Password' 
-            icon={VisibilityOff}
+    <Formik           
+      initialValues={{
+        firstName: '',
+        lastName: '',
+        email: '',
+        password: '',
+        confirmPassword: '',
+      }}
+      validationSchema={validationSchema}
+      onSubmit={onSubmit}
+    >
+      {({ 
+        handleChange, 
+        handleBlur, 
+        errors, 
+        touched 
+      }) => (
+        <FormWrapper>
+          <h1>Welcome! Create your account</h1>
+          <Switch 
+            options={[{
+              id: 1,
+              label: 'Sign in',
+              onClick: () => router.push('/login'),
+            }, {
+              id: 2,
+              label: 'Sign up',
+              onClick: () => router.push('/signup'),
+              isActivated: true,
+            }]}
           />
-        </li>
-        <li>
-          <Input 
-            name='confirmPassword' 
-            placeholder='Confirm Password' 
-            icon={VisibilityOff}
-          />
-        </li>
-        <li>
-          <Button 
-            type="button" 
-            label="Submit" 
-            onClick={() => console.log('new income')} 
-          />
-        </li>
-      </FormBody>
-    </FormWrapper>
+          <FormBody>
+            <li>
+              <Input 
+                name="firstName"
+                placeholder='First Name'
+                error={errors.firstName} 
+                touched={touched.firstName}
+                onChange={handleChange}
+                onBlur={handleBlur}
+              />
+            </li>
+            <li>
+              <Input 
+                name="lastName"
+                placeholder='Last Name'
+                error={errors.lastName} 
+                touched={touched.lastName}
+                onChange={handleChange}
+                onBlur={handleBlur}
+              />
+            </li>
+            <li>
+              <Input 
+                name="email"
+                placeholder='Email'
+                error={errors.email} 
+                touched={touched.email}
+                onChange={handleChange}
+                onBlur={handleBlur}
+              />
+            </li>
+            <li>
+              <Input 
+                name="password"
+                placeholder='Password'
+                error={errors.password} 
+                touched={touched.password}
+                onChange={handleChange}
+                onBlur={handleBlur}
+              />
+            </li>
+            <li>
+              <Input 
+                name="confirmPassword"
+                placeholder='Confirm Password'
+                error={errors.confirmPassword} 
+                touched={touched.confirmPassword}
+                onChange={handleChange}
+                onBlur={handleBlur}
+              />
+            </li>
+            <li>
+              <Button type="submit" label="Submit"/>
+            </li>
+          </FormBody>
+        </FormWrapper>
+      )}
+    </Formik>
   )
 }
 
