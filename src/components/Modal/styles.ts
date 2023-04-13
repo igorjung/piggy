@@ -7,7 +7,7 @@ export const ModalWrapper = styled.div<{ isOpen: boolean }>`
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 2;
+  z-index: 5;
 
   display: ${({ isOpen }) => isOpen ? 'flex' : 'none'};
   align-items: center;
@@ -28,6 +28,13 @@ export const ModalContainer = styled.div`
   padding: 32px;
   background-color: ${({ theme }) => theme.lightGray};
   border-radius: 15px;
+
+  @media screen and (max-width: 760px) {
+    width: 100%;
+    min-height: 100vh;
+
+    border-radius: 0;
+  }
 `
 export const ModalHeader = styled.header`
   width: 100%;
