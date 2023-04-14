@@ -15,7 +15,7 @@ interface AuthProviderProps {
 
 export const AuthContext = createContext<AuthContextProps>({
   isUserLogged: false,
-  userToken: undefined
+  userToken: undefined,
 })
 
 export const useAuthContext = () => {
@@ -24,9 +24,12 @@ export const useAuthContext = () => {
 
 export const AuthProvider = ({ children }: AuthProviderProps) => {
   const [isUserLogged, setIsUserLogged] = useState(false)
-  const [userToken, setUserToken] = useState()
+  const [userToken, setUserToken] = useState<string | undefined>()
 
   useEffect(() => {
+    const localToken = localStorage.getItem('userToken')?.toString()
+    setIsUserLogged(!!localToken !== undefined)
+    setUserToken(localToken)
   }, [])
 
   return (

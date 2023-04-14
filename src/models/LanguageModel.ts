@@ -6,7 +6,8 @@ export interface BaseTextModel {
     signup: string
   }
   placeholders: {
-    name: string
+    firstName: string
+    lastName: string
     email: string
     password: string
     confirmPassword: string
@@ -22,7 +23,15 @@ export interface BaseTextModel {
     required: string
     invalid: string
     passwordRules: string
-    emailRules: string
+    passwordMatch: string
+  },
+  layout: {
+    footer: string
+  },
+  sidebar: {
+    dashboard: string
+    entry: string
+    logout: string
   }
 }
 

@@ -27,6 +27,14 @@ export const LanguageProvider = ({ children }: LanguageProviderProps) => {
   const [baseText, setBaseText] = useState(data['en'])
 
   useEffect(() => {
+    if (
+      typeof navigator !== undefined 
+      && navigator.language === 'pt-BR'
+    ) {
+      setBaseText(data['pt'])
+    } else {
+      setBaseText(data['en'])
+    }
   }, [])
 
   return (

@@ -13,10 +13,9 @@ interface LayoutProps {
 
 const Layout = ({ children }: LayoutProps) => {
   const [isAuthRoute, setItAuthRoute] = useState(false)
-
   const { isUserLogged } = useAuthContext()
-
   const router = useRouter()
+  
   const authRoutes = [
     '/',
     '/login',

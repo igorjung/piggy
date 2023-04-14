@@ -1,8 +1,10 @@
 import type { NextPage } from 'next'
-import { useEffect } from 'react'
+import { useState } from 'react'
 import { useRouter } from 'next/router'
 import styled from 'styled-components'
-import { VisibilityOff } from '@material-ui/icons'
+import * as yup from "yup"
+import { Form, Formik } from 'formik';
+import { Visibility, VisibilityOff } from '@material-ui/icons'
 
 import { useLanguageContext  } from '@contexts'
 import { 
@@ -10,8 +12,9 @@ import {
   Input, 
   Switch 
 } from '@components'
+import { BaseTextModel } from '@/models';
 
-const FormWrapper = styled.form`
+const FormWrapper = styled(Form)`
   width: 100%;
   height: 100%;
 
@@ -37,47 +40,83 @@ const FormBody = styled.ul`
   margin-top: 32px;
 `
 
+const validationSchema = (baseText: BaseTextModel) => yup.object({
+  email: yup.string()
+    .email(baseText.spans.invalid)
+    .typeError(baseText.spans.invalid)
+    .required(baseText.spans.required),
+  password: yup.string()
+    .typeError(baseText.spans.invalid)
+    .required(baseText.spans.required),
+})
+
 const Login: NextPage = () => {
+  const [passwordType, setPasswordType] = useState(true)
   const router = useRouter()
   const { baseText } = useLanguageContext()
 
-  console.log(baseText)
+  const onSubmit = (data: any) => console.log('$$$$', data)
 
   return (
-    <FormWrapper>
-      <h1>Welcome Back!</h1>
-      <Switch 
-        options={[{
-          id: 1,
-          label: 'Sign in',
-          onClick: () => router.push('/login'),
-          isActivated: true,
-        }, {
-          id: 2,
-          label: 'Sign up',
-          onClick: () => router.push('/signup'),
-        }]}
-      />
-      <FormBody>
-        <li>
-          <Input name='email' placeholder='Email' />
-        </li>
-        <li>
-          <Input 
-            name='password' 
-            placeholder='Password' 
-            icon={VisibilityOff}
+    <Formik           
+      initialValues={{
+        email: '',
+        password: '',
+      }}
+      validationSchema={validationSchema(baseText)}
+      onSubmit={onSubmit}
+    >
+      {({ 
+        handleChange, 
+        handleBlur, 
+        errors, 
+        touched 
+      }) => (
+        <FormWrapper>
+          <h1>{baseText.titles.login}</h1>
+          <Switch 
+            options={[{
+              id: 1,
+              label: baseText.labels.login,
+              onClick: () => router.push('/login'),
+              isActivated: true,
+            }, {
+              id: 2,
+              label: baseText.labels.signup,
+              onClick: () => router.push('/signup'),
+            }]}
           />
-        </li>
-        <li>
-          <Button 
-            type="button" 
-            label="Submit" 
-            onClick={() => console.log('new income')} 
-          />
-        </li>
-      </FormBody>
-    </FormWrapper>
+          <FormBody>
+            <li>
+              <Input 
+                name='email' 
+                placeholder={baseText.placeholders.email} 
+                error={errors.email} 
+                touched={touched.email}
+                onChange={handleChange}
+                onBlur={handleBlur}
+              />
+            </li>
+            <li>
+              <Input 
+                name='password' 
+                type={passwordType ? 'password' : 'text'}
+                placeholder={baseText.placeholders.password} 
+                error={errors.password} 
+                touched={touched.password}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                icon={passwordType ? Visibility : VisibilityOff}
+                onIconClick={() => setPasswordType(!passwordType)}
+              />
+            </li>
+            <li>
+              <Button type="submit" label={baseText.labels.submit}/>
+            </li>
+          </FormBody>
+        </FormWrapper>
+      )}
+    </Formik>
   )
 }
 
