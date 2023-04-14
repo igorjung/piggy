@@ -12,7 +12,7 @@ import {
   Modal,
   Table,
 } from '@components'
-import { BalanceTableModel } from '@/interfaces';
+import { BalanceTableModel } from '@/models';
 
 const Title = styled.h1`
   width: 100%;

@@ -1,8 +1,10 @@
 import type { NextPage } from 'next'
+import { useEffect } from 'react'
 import { useRouter } from 'next/router'
 import styled from 'styled-components'
 import { VisibilityOff } from '@material-ui/icons'
 
+import { useLanguageContext  } from '@contexts'
 import { 
   Button, 
   Input, 
@@ -37,6 +39,9 @@ const FormBody = styled.ul`
 
 const Login: NextPage = () => {
   const router = useRouter()
+  const { baseText } = useLanguageContext()
+
+  console.log(baseText)
 
   return (
     <FormWrapper>
