@@ -18,12 +18,6 @@ const Input = ({
   onIconClick,
   ...rest
 }: InputProps) => {
-  console.log( icon,
-    error,
-    touched,
-    onIconClick,
-    rest)
-
   return (
     <FormInputWrapper isInvalid={!!error && touched}>
       <input type="text" {...rest}/>

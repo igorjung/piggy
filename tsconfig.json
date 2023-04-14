@@ -17,8 +17,9 @@
     "paths": {
       "@/*": ["./src/*"],
       "@components": ["./src/components"],
-      "@interfaces": ["./src/interfaces"],
+      "@models": ["./src/models"],
       "@layouts": ["./src/layouts"],
+      "@contexts": ["./src/contexts"],
       "@styles/*": ["./src/styles/*"],
       "@utils": ["./src/utils"],
     }

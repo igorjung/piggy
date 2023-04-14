@@ -1,4 +1,4 @@
-import { EntryModel } from '@interfaces'
+import { EntryModel } from '@/models'
 
 export interface BalanceMonthModel {
   date: string

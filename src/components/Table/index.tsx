@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { Edit, Delete }  from '@material-ui/icons'
 
-import { BalanceTableModel } from '@/interfaces'
+import { BalanceTableModel } from '@/models'
 import { 
   Alert,
   Button, 
