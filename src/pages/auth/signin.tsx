@@ -1,44 +1,18 @@
 import type { NextPage } from 'next'
 import { useState } from 'react'
 import { useRouter } from 'next/router'
-import styled from 'styled-components'
 import * as yup from "yup"
-import { Form, Formik } from 'formik';
+import { Formik } from 'formik';
 import { Visibility, VisibilityOff } from '@material-ui/icons'
 
-import { useLanguageContext  } from '@contexts'
+import { useAuthContext, useLanguageContext  } from '@contexts'
 import { 
   Button, 
   Input, 
   Switch 
 } from '@components'
-import { BaseTextModel } from '@/models';
-
-const FormWrapper = styled(Form)`
-  width: 100%;
-  height: 100%;
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-
-  h1 {
-    margin-bottom: 32px;
-  }
-`
-const FormBody = styled.ul`
-  width: 100%;
-  max-width: 600px;
-  height: 100%;
-
-  display: grid;
-  justify-content: center;
-  grid-template-columns: auto;
-  gap: 16px;
-
-  margin-top: 32px;
-`
+import { BaseTextModel } from '@models';
+import { FormWrapper, FormBody } from '@styles/global'
 
 const validationSchema = (baseText: BaseTextModel) => yup.object({
   email: yup.string()
@@ -50,12 +24,11 @@ const validationSchema = (baseText: BaseTextModel) => yup.object({
     .required(baseText.spans.required),
 })
 
-const Login: NextPage = () => {
+const Signin: NextPage = () => {
   const [passwordType, setPasswordType] = useState(true)
   const router = useRouter()
   const { baseText } = useLanguageContext()
-
-  const onSubmit = (data: any) => console.log('$$$$', data)
+  const { login } = useAuthContext()
 
   return (
     <Formik           
@@ -64,7 +37,7 @@ const Login: NextPage = () => {
         password: '',
       }}
       validationSchema={validationSchema(baseText)}
-      onSubmit={onSubmit}
+      onSubmit={(data) => login(data)}
     >
       {({ 
         handleChange, 
@@ -73,17 +46,17 @@ const Login: NextPage = () => {
         touched 
       }) => (
         <FormWrapper>
-          <h1>{baseText.titles.login}</h1>
+          <h1>{baseText.titles.signin}</h1>
           <Switch 
             options={[{
               id: 1,
-              label: baseText.labels.login,
-              onClick: () => router.push('/login'),
+              label: baseText.labels.signin,
+              onClick: () => router.push('/auth/signin'),
               isActivated: true,
             }, {
               id: 2,
               label: baseText.labels.signup,
-              onClick: () => router.push('/signup'),
+              onClick: () => router.push('/auth/signup'),
             }]}
           />
           <FormBody>
@@ -120,4 +93,4 @@ const Login: NextPage = () => {
   )
 }
 
-export default Login
+export default Signin

@@ -1,64 +1,41 @@
 import type { NextPage } from 'next'
 import { useRouter } from 'next/router'
 import * as yup from "yup"
-import { Form, Formik } from 'formik';
-import styled from 'styled-components'
+import { Formik } from 'formik';
 
+import { useLanguageContext } from '@contexts';
 import { 
   Button, 
   Input, 
   Switch 
 } from '@components'
+import { BaseTextModel } from '@models';
+import { FormWrapper, FormBody } from '@styles/global'
 
-const FormWrapper = styled(Form)`
-  width: 100%;
-  height: 100%;
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-
-  h1 {
-    margin-bottom: 32px;
-  }
-`
-const FormBody = styled.ul`
-  width: 100%;
-  max-width: 600px;
-  height: 100%;
-
-  display: grid;
-  justify-content: center;
-  grid-template-columns: auto;
-  gap: 8px;
-
-  margin-top: 32px;
-`
-
-const validationSchema = yup.object({
+const validationSchema = (baseText: BaseTextModel) => yup.object({
   firstName: yup.string()
-    .typeError('Invalid value')
-    .required('Field required'),
+    .typeError(baseText.spans.invalid)
+    .required(baseText.spans.required),
   lastName: yup.string()
-    .typeError('Invalid value')
-    .required('Field required'),
+    .typeError(baseText.spans.invalid)
+    .required(baseText.spans.required),
   email: yup.string()
     .email()
-    .typeError('Invalid value')
-    .required('Field required'),
+    .typeError(baseText.spans.invalid)
+    .required(baseText.spans.required),
   password: yup.string()
-    .min(8, 'Password must have 8 at least character')
-    .typeError('Invalid value')
-    .required('Field required'),
+    .min(8, baseText.spans.passwordRules)
+    .typeError(baseText.spans.invalid)
+    .required(baseText.spans.required),
   confirmPassword: yup.string()
-    .typeError('Invalid value')
-    .oneOf([yup.ref('password'), ''], 'Password values must match')
-    .required('Field required')
+    .typeError(baseText.spans.invalid)
+    .oneOf([yup.ref('password'), ''], baseText.spans.passwordMatch)
+    .required(baseText.spans.required)
 })
 
 const Signup: NextPage = () => {
   const router = useRouter()
+  const { baseText } = useLanguageContext()
 
   const onSubmit = (data: any) => console.log('$$$$', data)
 
@@ -71,7 +48,7 @@ const Signup: NextPage = () => {
         password: '',
         confirmPassword: '',
       }}
-      validationSchema={validationSchema}
+      validationSchema={validationSchema(baseText)}
       onSubmit={onSubmit}
     >
       {({ 
@@ -81,16 +58,16 @@ const Signup: NextPage = () => {
         touched 
       }) => (
         <FormWrapper>
-          <h1>Welcome! Create your account</h1>
+          <h1>{baseText.titles.signup}</h1>
           <Switch 
             options={[{
               id: 1,
-              label: 'Sign in',
-              onClick: () => router.push('/login'),
+              label: baseText.labels.signin,
+              onClick: () => router.push('/auth/signin'),
             }, {
               id: 2,
-              label: 'Sign up',
-              onClick: () => router.push('/signup'),
+              label: baseText.labels.signup,
+              onClick: () => router.push('/auth/signup'),
               isActivated: true,
             }]}
           />
@@ -98,7 +75,7 @@ const Signup: NextPage = () => {
             <li>
               <Input 
                 name="firstName"
-                placeholder='First Name'
+                placeholder={baseText.placeholders.firstName}
                 error={errors.firstName} 
                 touched={touched.firstName}
                 onChange={handleChange}
@@ -108,7 +85,7 @@ const Signup: NextPage = () => {
             <li>
               <Input 
                 name="lastName"
-                placeholder='Last Name'
+                placeholder={baseText.placeholders.lastName}
                 error={errors.lastName} 
                 touched={touched.lastName}
                 onChange={handleChange}
@@ -118,7 +95,7 @@ const Signup: NextPage = () => {
             <li>
               <Input 
                 name="email"
-                placeholder='Email'
+                placeholder={baseText.placeholders.email}
                 error={errors.email} 
                 touched={touched.email}
                 onChange={handleChange}
@@ -128,7 +105,7 @@ const Signup: NextPage = () => {
             <li>
               <Input 
                 name="password"
-                placeholder='Password'
+                placeholder={baseText.placeholders.password}
                 error={errors.password} 
                 touched={touched.password}
                 onChange={handleChange}
@@ -138,7 +115,7 @@ const Signup: NextPage = () => {
             <li>
               <Input 
                 name="confirmPassword"
-                placeholder='Confirm Password'
+                placeholder={baseText.placeholders.confirmPassword}
                 error={errors.confirmPassword} 
                 touched={touched.confirmPassword}
                 onChange={handleChange}
@@ -146,7 +123,7 @@ const Signup: NextPage = () => {
               />
             </li>
             <li>
-              <Button type="submit" label="Submit"/>
+              <Button type="submit" label={baseText.labels.submit}/>
             </li>
           </FormBody>
         </FormWrapper>

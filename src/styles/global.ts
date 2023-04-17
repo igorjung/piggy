@@ -1,5 +1,31 @@
-import { createGlobalStyle } from "styled-components";
+import styled, { createGlobalStyle } from 'styled-components';
+import { Form } from 'formik';
 
+export const FormWrapper = styled(Form)`
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  h1 {
+    margin-bottom: 32px;
+  }
+`
+export const FormBody = styled.ul`
+  width: 100%;
+  max-width: 600px;
+  height: 100%;
+
+  display: grid;
+  justify-content: center;
+  grid-template-columns: auto;
+  gap: 16px;
+
+  margin-top: 32px;
+`
 export default createGlobalStyle`
   * {
     margin: 0;

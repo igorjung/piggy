@@ -15,25 +15,14 @@ const Layout = ({ children }: LayoutProps) => {
   const [isAuthRoute, setItAuthRoute] = useState(false)
   const { isUserLogged } = useAuthContext()
   const router = useRouter()
-  
-  const authRoutes = [
-    '/',
-    '/login',
-    '/signup'
-  ]
 
   useEffect(() => {
-    const isAuth = authRoutes.find(route => route.includes(router.asPath))
+    const isAuth = router.asPath.includes('auth')
 
-    if (isUserLogged && isAuth) {
-      console.log('user logged in wrong page')
-      // router.push('/home')
-    } else if (!isUserLogged && !isAuth) {
-      console.log('user not logged in wrong page')
-      // router.push('/')
-    }
+    if (isUserLogged && isAuth) router.push('/home')
+    else if (!isUserLogged && !isAuth) router.push('/auth/signin')
 
-    setItAuthRoute(!!isAuth)
+    setItAuthRoute(isAuth)
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [router, isUserLogged])
 
