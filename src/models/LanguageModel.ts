@@ -2,7 +2,7 @@ export interface BaseTextModel {
   labels: {
     submit: string
     cancel: string
-    login: string
+    signin: string
     signup: string
   }
   placeholders: {
@@ -16,7 +16,7 @@ export interface BaseTextModel {
   titles: {
     home: string
     entry: string
-    login: string
+    signin: string
     signup: string
   }
   spans: {
