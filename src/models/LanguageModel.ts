@@ -18,16 +18,26 @@ export interface BaseTextModel {
     entry: string
     signin: string
     signup: string
+    myProfile: string
+    editProfile: string
+    deleteProfile: string
+    settingProfile: string
   }
   spans: {
     required: string
     invalid: string
     passwordRules: string
     passwordMatch: string
-  },
+  }
   layout: {
     footer: string
-  },
+    profile: {
+      myProfile: string
+      settings: string
+      edit: string
+      delete: string
+    }
+  }
   sidebar: {
     dashboard: string
     entry: string
