@@ -19,7 +19,7 @@ interface AuthProviderProps {
 export const AuthContext = createContext<AuthContextProps>({
   isUserLogged: false,
   userToken: null,
-  isLoading: false,
+  isLoading: true,
   login: () => {},
   logout: () => {}
 })
@@ -31,18 +31,17 @@ export const useAuthContext = () => {
 export const AuthProvider = ({ children }: AuthProviderProps) => {
   const [isUserLogged, setIsUserLogged] = useState(false)
   const [userToken, setUserToken] = useState<string | null>(null)
-  const [isLoading, setIsLoading] = useState(false)
+  const [isLoading, setIsLoading] = useState(true)
 
   const setAuthData = () => {
     const localToken = localStorage.getItem('userToken')
     setIsUserLogged(!!localToken)
     setUserToken(localToken)
+    setIsLoading(false)
   }
 
   useEffect(() => {
-    setIsLoading(true)
     setAuthData()
-    setIsLoading(false)
   }, [])
 
   const login = (data: { email: string, password: string}) => {
@@ -50,14 +49,12 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     console.log('Submited data: ', data)
     localStorage.setItem('userToken', 'abcd1234')
     setAuthData()
-    setIsLoading(false)
   }
 
   const logout = () => {
     setIsLoading(true)
     localStorage.removeItem('userToken')
     setAuthData()
-    setIsLoading(false)
   }
 
   return (

@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import { SvgIcon } from '@material-ui/core'
 import { AccountCircle } from '@material-ui/icons'
 
@@ -18,9 +19,9 @@ const DefaultLayout = ({ children }: DefaultLayoutProps) => {
     <LayoutWrapper>
       <Sidebar />
       <LayoutHeader>
-        <a href='/profile'>
+        <Link href='/profile'>
           <SvgIcon component={AccountCircle} />
-        </a>
+        </Link>
       </LayoutHeader>
       <LayoutBody>{children}</LayoutBody>
       <LayoutFooter>

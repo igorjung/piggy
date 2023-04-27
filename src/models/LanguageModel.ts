@@ -4,6 +4,7 @@ export interface BaseTextModel {
     cancel: string
     signin: string
     signup: string
+    delete: string
   }
   placeholders: {
     firstName: string
@@ -11,6 +12,8 @@ export interface BaseTextModel {
     email: string
     password: string
     confirmPassword: string
+    newPassword: string
+    oldPassword: string
     type: string
   }
   titles: {
@@ -18,16 +21,28 @@ export interface BaseTextModel {
     entry: string
     signin: string
     signup: string
+    myProfile: string
+    editProfile: string
+    editPasswordProfile: string
+    deleteProfile: string
+    settingProfile: string
   }
   spans: {
     required: string
     invalid: string
     passwordRules: string
     passwordMatch: string
-  },
+    confirmDeletion: string
+  }
   layout: {
     footer: string
-  },
+    profile: {
+      myProfile: string
+      edit: string
+      newPassword: string
+      delete: string
+    }
+  }
   sidebar: {
     dashboard: string
     entry: string

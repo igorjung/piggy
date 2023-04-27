@@ -10,6 +10,8 @@ import {
   ExitToApp,
 } from '@material-ui/icons'
 
+import { useAuthContext } from '@contexts'
+
 import { 
   SidebarController,
   SidebarWrapper,
@@ -21,6 +23,7 @@ import {
 
 const Sidebar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const { logout } = useAuthContext()
 
   const router = useRouter()
   const navItems = [{
@@ -39,10 +42,6 @@ const Sidebar = () => {
 
   const onSidebarStatusChange = () => {
     setIsOpen(!isOpen);
-  }
-
-  const onLogout = () => {
-    router.push('/');
   }
 
   useEffect(() => {
@@ -77,7 +76,7 @@ const Sidebar = () => {
           </SidebarItem>
         ))}
       </SidebarNav>
-      <SidebarFooter type="button" onClick={onLogout}>
+      <SidebarFooter type="button" onClick={() => logout()}>
         <SvgIcon component={ExitToApp}/>
         <strong>Log out</strong>
       </SidebarFooter>
