@@ -3,9 +3,9 @@ import { useRouter } from 'next/router'
 import { SvgIcon } from '@material-ui/core'
 import { 
   ArrowBack, 
-  Settings, 
   Edit, 
-  ExitToApp, 
+  Lock, 
+  DeleteForever, 
   Person
 } from '@material-ui/icons'
 
@@ -18,6 +18,8 @@ import {
   LayoutSidebar,
   LayoutSidebarItem,
   LayoutBody,
+  LayoutMobileMenu,
+  LayoutMobileMenuItem,
   LayoutFooter
 } from './styles'
 
@@ -36,18 +38,18 @@ const ProfileLayout = ({ children }: ProfileLayoutProps) => {
     path: '/profile'
   },{
     id: 1,
-    label: baseText.layout.profile.settings,
-    icon: Settings,
-    path: '/profile/settings'
-  }, {
-    id: 2,
     label: baseText.layout.profile.edit,
     icon: Edit,
     path: '/profile/edit'
   }, {
+    id: 2,
+    label: baseText.layout.profile.newPassword,
+    icon: Lock,
+    path: '/profile/new-password'
+  }, {
     id: 3,
     label: baseText.layout.profile.delete,
-    icon: ExitToApp,
+    icon: DeleteForever,
     path: '/profile/delete'
   }]
 
@@ -63,7 +65,7 @@ const ProfileLayout = ({ children }: ProfileLayoutProps) => {
           {profileOptions.map(item => (
             <LayoutSidebarItem 
               key={item.id} 
-              isSelected={router.asPath.includes(item.path)}
+              isSelected={router.asPath === item.path}
               onClick={() => router.push(item.path)}
             >
               <SvgIcon component={item.icon}/>
@@ -72,6 +74,17 @@ const ProfileLayout = ({ children }: ProfileLayoutProps) => {
           ))}
         </LayoutSidebar>
         <LayoutBody>{children}</LayoutBody>
+        <LayoutMobileMenu>
+          {profileOptions.map(item => (
+            <LayoutMobileMenuItem 
+              key={item.id} 
+              isSelected={router.asPath === item.path}
+              onClick={() => router.push(item.path)}
+            >
+              <SvgIcon component={item.icon}/>
+            </LayoutMobileMenuItem>
+          ))}
+        </LayoutMobileMenu>
       </LayoutContent>
       <LayoutFooter>
         <small>{baseText.layout.footer}</small>

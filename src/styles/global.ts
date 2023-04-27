@@ -26,6 +26,56 @@ export const FormBody = styled.ul`
 
   margin-top: 32px;
 `
+export const SectionWrapper = styled.div`
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+`
+export const SectionLine = styled.ul`
+  width: 100%;
+  max-width: 600px;
+  height: 100%;
+
+  display: flex;
+  flex-direction: grid;
+  gap: 32px;
+  justify-content: center;
+
+  padding: 32px;
+
+  @media screen and (max-width: 760px) {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+
+    padding: 32px 0;
+  }
+`
+export const SectionColumn = styled.li`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+
+  span {
+    width: 100%;
+
+    border-top: ${({ theme }) => `2px solid ${theme.darkGray}`};
+    padding-top: 4px;
+    margin-top: 4px;
+  }
+
+  strong {
+    padding-left: 8px;
+  }
+`
+
 export default createGlobalStyle`
   * {
     margin: 0;

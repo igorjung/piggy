@@ -1,36 +1,37 @@
 import type { NextPage } from 'next'
 import styled from 'styled-components'
-import { VisibilityOff } from '@material-ui/icons'
 
-import { Button, Input } from '@components'
-
-const FormWrapper = styled.form`
-  width: 100%;
-  height: 100%;
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-`
-const FormBody = styled.ul`
-  width: 100%;
-  max-width: 600px;
-  height: 100%;
-
-  display: grid;
-  justify-content: center;
-  grid-template-columns: auto;
-  gap: 16px;
-
-  margin-top: 32px;
-`
+import { useLanguageContext } from '@contexts'
+import { 
+  SectionWrapper, 
+  SectionLine, 
+  SectionColumn 
+} from '@styles/global'
+import profileData from '@/mocks/user'
 
 const Profile: NextPage = () => {
+  const { baseText } = useLanguageContext()
+
   return (
-    <FormWrapper>
-      <h1>Edit Profile</h1>
-    </FormWrapper>
+    <SectionWrapper>
+      <h1>{baseText.titles.myProfile}</h1>
+      <SectionLine>
+        <SectionColumn>
+          <strong>{profileData.firstName}</strong>
+          <span>First name</span>
+        </SectionColumn>
+        <SectionColumn>
+          <strong>{profileData.lastName}</strong>
+          <span>Last name</span>
+        </SectionColumn>
+      </SectionLine>
+      <SectionLine>
+        <SectionColumn>
+          <strong>{profileData.email}</strong>
+          <span>Email</span>
+        </SectionColumn>
+      </SectionLine>
+    </SectionWrapper>
   )
 }
 
